@@ -16,6 +16,8 @@ app.use(methodOverride());
 mongoose.connect('mongodb://localhost/football');
 require('./models/team.js');
 require('./models/match.js');
+require('./models/matchEvent.js');
+require('./models/event.js');
 
 app.use(require('./routes'));
 
