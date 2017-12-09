@@ -24,15 +24,17 @@ var Team = mongoose.model('team');
 
 //
 
+//get all
 router.get('/', (req, res, next) => {
   Team.find({})
   .then(teams =>{
-    if(!teams.length){ return res.sendStatus(404); }
+    if(!teams.length){ return res.sendStatus(204); }
     return res.json({'teams': teams})
   })
   .catch(next);
 });
 
+//get by id
 router.get('/:id', (req, res, next) => {
   let id = req.params.id
   Team.findById(id)
@@ -43,6 +45,7 @@ router.get('/:id', (req, res, next) => {
   .catch(next);
 });
 
+//delete by id
 router.delete('/:id', (req, res, next) => {
   let id = req.params.id;
 
@@ -57,6 +60,7 @@ router.delete('/:id', (req, res, next) => {
   });
 });
 
+//add new one
 router.post('/', (req, res, next) => {
   Team.find(req.body)
   .then(tfind=>{
@@ -68,6 +72,7 @@ router.post('/', (req, res, next) => {
   })
 });
 
+//update by id
 router.put('/:id',(req, res, next) =>{
   let id= req.params.id;
 

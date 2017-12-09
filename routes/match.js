@@ -71,29 +71,6 @@ let localID=req.body.localTeamId;
 let visitorID=req.body.visitorTeamId;
 let dateTimeBegin=req.body.dateTimeBegin;
 
-// var localTeam = new Team();
-// var visitorTeam = new Team();
-//
-// //search local team
-// Team.find({id:localID})
-// .then(team =>{
-//   if(!team.length){ return res.sendStatus(404); }
-//   var local = new Team(team);
-//   console.log(local);
-//   console.log(local._id);
-// })
-//
-// //search visitor team
-// Team.find({id:visitorID})
-// .then(team =>{
-//   if(!team.length){ return res.sendStatus(404); }
-//   var visitor = new Team(team);
-//   visitor.populate();
-//   console.log(visitor);
-//   console.log(visitor._id);
-// })
-
-
 //create new match
 let newMatch= new Match({localTeam:localID,
                          visitorTeam:visitorID,
