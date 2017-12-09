@@ -9,7 +9,6 @@ var Team = mongoose.model('team');
 // Team.remove().exec();
 //
 // var nob = new Team({
-//   id: 1,
 //   name: 'nob',
 //   province: 'Sta Fe',
 //   city: 'Rosario'
@@ -17,12 +16,12 @@ var Team = mongoose.model('team');
 // nob.save();
 //
 // var colon = new Team({
-//   id: 2,
 //   name: 'colon',
 //   province: 'Sta Fe',
 //   city: 'Sta Fe'
 // });
 // colon.save();
+
 //
 
 router.get('/', (req, res, next) => {
@@ -36,7 +35,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   let id = req.params.id
-  Team.find({id:id})
+  Team.findById(id)
   .then(team =>{
     if(!team.length){ return res.sendStatus(404); }
     return res.json({'team': team})
@@ -47,12 +46,13 @@ router.get('/:id', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
   let id = req.params.id;
 
-  Team.find({id:id})
+  Team.findById(id)
   .then(team =>{
     if(!team.length){
       return res.sendStatus(404);
     }
-    Team.remove({id:id}).exec();
+
+    Team.remove({_id:id}).exec();
     return res.sendStatus(200);
   });
 });
@@ -71,7 +71,7 @@ router.post('/', (req, res, next) => {
 router.put('/:id',(req, res, next) =>{
   let id= req.params.id;
 
-  Team.findOneAndUpdate({id:id}, req.body, (err) =>{
+  Team.findOneAndUpdate({_id:id}, req.body, (err) =>{
     if(err){ res.sendStatus(404); }
     else{ res.sendStatus(200); }
   })

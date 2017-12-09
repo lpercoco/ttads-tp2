@@ -1,8 +1,8 @@
 var mongoose =require('mongoose');
 
 var eventSchema= new mongoose.Schema({
-  id: {type: Number, required: true, unique: true},
-  description: {type: String}
+  name: {type: String, required: true, unique: true},
+  description: {type: String, required: true, unique: true}
 },{timestamps:true});
 
 mongoose.model('event', eventSchema);
