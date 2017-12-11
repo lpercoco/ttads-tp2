@@ -37,27 +37,38 @@ router.get('/', (req, res, next) => {
 //get by id
 router.get('/:id', (req, res, next) => {
   let id = req.params.id
-  Team.findById(id)
-  .then(team =>{
-    if(!team.length){ return res.sendStatus(404); }
-    return res.json({'team': team})
-  })
-  .catch(next);
+
+  if (id.match(/^[0-9a-fA-F]{24}$/)) {
+    Team.find({_id:id})
+    .then(team =>{
+      if(!team.length){ return res.sendStatus(404); }
+      return res.json({'team': team})
+    })
+    .catch(next);
+  }else{
+    res.send("Formato id incompatible");
+  }
+
 });
 
 //delete by id
 router.delete('/:id', (req, res, next) => {
   let id = req.params.id;
 
-  Team.findById(id)
-  .then(team =>{
-    if(!team.length){
-      return res.sendStatus(404);
-    }
+  if (id.match(/^[0-9a-fA-F]{24}$/)) {
+    Team.find({_id:id})
+    .then(team =>{
+      if(!team.length){
+        return res.sendStatus(404);
+      }
 
-    Team.remove({_id:id}).exec();
-    return res.sendStatus(200);
-  });
+      Team.remove({_id:id}).exec();
+      return res.sendStatus(200);
+    });
+  }else{
+    res.send("Formato id incompatible");
+  }
+
 });
 
 //add new one
