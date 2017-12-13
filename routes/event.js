@@ -15,8 +15,8 @@ router.post('/', (req, res) => {
 
   let matchId=req.body.matchId;
 
-  let team=new Team({_id:req.body.teamId});
-  let eventType=new EventType({_id:req.body.evenTypeId});
+  let team=req.body.teamId;
+  let eventType=req.body.evenTypeId;
   let time=req.body.time;
   let player=req.body.player;
   let observation=req.body.observation;
@@ -28,6 +28,7 @@ router.post('/', (req, res) => {
     time:time,
     player:player,
     observation:observation
+
   });
 
   //record event
@@ -39,8 +40,9 @@ router.post('/', (req, res) => {
     }else{
       //record event in match
       mfind.events.push(event);
-      //mfind.save();
-      console.log(mfind);
+      mfind.save();
+      //console.log(event._id);
+      //console.log(mfind);
       res.sendStatus(200);
     }
   })
