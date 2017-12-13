@@ -39,7 +39,8 @@ router.post('/', (req, res) => {
     }else{
       //record event in match
       mfind.events.push(event);
-      mfind.save();
+      //mfind.save();
+      console.log(mfind);
       res.sendStatus(200);
     }
   })
