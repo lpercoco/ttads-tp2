@@ -12,7 +12,6 @@ export class DetallePartidoComponent implements OnInit {
 
   private eventos = [];
 	@Input() partidoActivo: Partido;
-	private hola: string;
 
 	constructor(private service: AppService){
 

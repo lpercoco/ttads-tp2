@@ -15,13 +15,13 @@ export class AppService {
     }
 
   getPartidosActivos() {
-        let url = this.apiUrl + "matchs/active";
-        return this.http.get(url)
-        .map((res: Response) => res.json());
+    let url = this.apiUrl + "matchs/active";
+    return this.http.get(url)
+    .map((res: Response) => res.json());
     }
   getEventosPartido(partido: Partido) {
   	let id = partido.id;
-  	let url = this.apiUrl + "matches/${id}";
+  	let url = this.apiUrl + "matchs/${id}";
   	return this.http.get(url).map((res: Response) => res.json());
   }
 }

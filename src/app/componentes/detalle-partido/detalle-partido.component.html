@@ -1,41 +1,41 @@
-<div *ngIf="partidoActivo" class="partido-detalle">	
+<div *ngIf="partidoActivo" class="partido-detalle">
 	<div class="well well-sm" id="fecha-well">
-		<h3 id="text-fecha">Fecha: {{partidoActivo.fecha_hora_inicio}}</h3>
+		<h3 id="text-fecha">Fecha: {{partidoActivo.beginOfMatch | date: 'yyyy-MM-dd -- HH:mm'}}</h3>
 	</div>
 
 	<div class="container-fluid">
 		<div class="row">
-				<div class="col-lg-6">
-					<div class="well">
-						<h4>Local: {{partidoActivo.equipo1.nombre | uppercase}}</h4>
-					</div>
+			<div class="col-lg-6">
+				<div class="well">
+					<h4>Local: {{partidoActivo.localTeam.name }}</h4>
 				</div>
-				<div class="col-lg-6">
-					<div class="well">
-						<h4>Visitante: {{partidoActivo.equipo2.nombre | uppercase}}</h4>
-					</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="well">
+					<h4>Visitante: {{partidoActivo.visitorTeam.name }}</h4>
 				</div>
+			</div>
 		</div>
 	</div>
 	<div class="container" id="tabla-eventos">
-	  <h2>Eventos</h2>       
-	  <table class="table table-striped">
-	    <thead>
-	      <tr>
-	        <th>Minuto</th>
-	        <th>Jugador</th>
-	        <th>Evento</th>
-	        <th>Equipo</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr *ngFor="let evento of partidoActivo.eventos; let i = index">
-	        <td>{{evento.hora_evento}}'</td>
-	        <td>{{evento.jugador}}</td>
-	        <td>{{evento.clase_evento.nombre_evento | uppercase}}</td>
-	        <td>{{evento.equipo.nombre | uppercase}}</td>
-	      </tr>
-	    </tbody>
-	  </table>
+		<h2>Eventos</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Minuto</th>
+					<th>Jugador</th>
+					<th>Evento</th>
+					<th>Equipo</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let evento of partidoActivo.eventos; let i = index">
+					<td>{{evento.time}}'</td>
+					<td>{{evento.player}}</td>
+					<td>{{evento.clase_evento.nombre_evento }}</td>
+					<td>{{evento.team }}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>

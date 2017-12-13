@@ -14,7 +14,8 @@ import { DetallePartidoComponent } from './componentes/detalle-partido/detalle-p
     DetallePartidoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

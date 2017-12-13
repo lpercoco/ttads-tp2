@@ -13,22 +13,19 @@ import { Observable } from 'rxjs/Observable';
 })
 
 export class PartidosActivosComponent implements OnInit {
-    private partidos = [];
+    //private matchs : Partido[];
     partidoElegido: Partido;
+    result: any;
 
     constructor(private service: AppService) {
 
     }
 
     ngOnInit() {
-        this.service.getPartidosActivos().subscribe(data => this.partidos = data)
+        this.service.getPartidosActivos().subscribe(data => this.result = data)
     }
 
-   seleccionarPartido(partido) {
-        this.partidoElegido = partido;
+   seleccionarPartido(match) {
+        this.partidoElegido = match;
     }
-
-  /*  partidosActivos() {
-        this.service.getPartidosActivos().subscribe(data => this.partidos = data)
-    }*/
 }
