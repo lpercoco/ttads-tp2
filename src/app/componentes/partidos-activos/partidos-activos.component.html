@@ -1,0 +1,14 @@
+<div class="container" id="partidos-activos">
+    <h3>Partidos en juego</h3>
+    <br>                                  
+    <div class="dropdown">
+      <button id="btn-drop" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Partidos
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu" >
+        <li *ngFor = "let partido of partidos"><a (click)="seleccionarPartido(partido)" href="#">
+        {{partido.equipo1.nombre | uppercase}} vs {{partido.equipo2.nombre | uppercase}}</a></li>
+      </ul>
+    </div>
+    <br>
+    
+  </div>
