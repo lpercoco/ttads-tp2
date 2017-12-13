@@ -80,7 +80,7 @@ router.post('/', (req, res, next) => {
   let visitorID=req.body.visitorTeamId;
   let dateTimeBegin=req.body.dateTimeBegin;
 
-  if ((localID.match(/^[0-9a-fA-F]{24}$/)) && (visitorId.match(/^[0-9a-fA-F]{24}$/))) {
+  if ((localID.match(/^[0-9a-fA-F]{24}$/)) && (visitorID.match(/^[0-9a-fA-F]{24}$/))) {
   //create new match
   let newMatch= new Match({localTeam:localID,
                            visitorTeam:visitorID,
@@ -95,7 +95,7 @@ router.post('/', (req, res, next) => {
         res.sendStatus(201);
       }else{ res.sendStatus(409);}
     })
-    
+
   }else{
     res.send("Formato id equipos incompatible");
   }
