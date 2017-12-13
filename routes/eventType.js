@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
   EventType.find({})
   .then(events =>{
     if(!events.length){ return res.sendStatus(204); }
-    return res.json({'eventTypes': eventTypes})
+    return res.json({'eventTypes': events})
   })
   .catch(next);
 });
