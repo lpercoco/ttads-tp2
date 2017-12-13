@@ -9,13 +9,6 @@ var Team = mongoose.model('team');
 
 var router=require('express').Router();
 
-Event.collection.dropAllIndexes(function (err, results) {
-  // Handle errors
-});
-
-EventType.collection.dropAllIndexes(function (err, results) {
-  // Handle errors
-});
 
 //add event to a match
 router.post('/', (req, res) => {
@@ -53,5 +46,27 @@ router.post('/', (req, res) => {
 )
 
 });
+
+router.delete('/:id', (req, res) => {
+
+  var eventId=req.params.id;
+
+  Event.findByIdAndRemove(eventId, err=>{
+    if(err){
+      return res.sendStatus(404);
+    }
+    else{
+      Match.findOne({'events':{_id:eventId}})
+      .then(mfind =>{
+
+        //delete from match
+        mfind.events.pull(eventId);
+        mfind.save();
+
+        return res.sendStatus(200);
+      })
+    }
+  })
+})
 
 module.exports=router;
