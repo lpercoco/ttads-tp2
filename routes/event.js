@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
         if (err) {
           return res.sendStatus(500);
         }
-        res.status(201);
+        return res.sendStatus(200);
       });
     });
   });
@@ -75,7 +75,7 @@ router.delete('/:id', (req, res) => {
         mfind.events.pull(eventId);
         mfind.save();
 
-        return res.sendStatus(200);
+        return res.sendStatus(200).send();
       })
     }
   })
