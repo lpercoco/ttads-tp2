@@ -16,39 +16,48 @@ router.post('/', (req, res) => {
   let matchId=req.body.matchId;
 
   let team=req.body.teamId;
-  let eventType=req.body.evenTypeId;
+  let eventType=req.body.eventTypeId;
   let time=req.body.time;
   let player=req.body.player;
   let observation=req.body.observation;
 
-  //set event values
-  let event= new Event({
-    eventType:eventType,
-    team:team,
-    time:time,
-    player:player,
-    observation:observation
 
-  });
-
-  //record event
-  event.save()
-  .then(Match.findOne({_id:matchId})
-  .then(mfind=>{
-    if(!mfind){
-      res.sendStatus(401);
-    }else{
-      //record event in match
-      mfind.events.push(event);
-      mfind.save();
-      //console.log(event._id);
-      //console.log(mfind);
-      res.sendStatus(200);
+  Match.findById(matchId, (err, match) => {
+    if (err) {
+      return res.sendStatus(500);
     }
-  })
-)
 
-});
+    if (!match) {
+      return res.sendStatus(404);
+    }
+
+    //set event values
+     var newEvent= new Event({
+      eventType:eventType,
+      team:team,
+      time:time,
+      player:player,
+      observation:observation
+    });
+
+    // save new event
+    newEvent.save((err, event) => {
+      if (err) {
+        return res.sendStatus(500);
+      }
+
+      match.events.push(event._id);
+
+      match.save((err) => {
+        if (err) {
+          return res.sendStatus(500);
+        }
+        res.status(201);
+      });
+    });
+  });
+})
+
 
 router.delete('/:id', (req, res) => {
 
