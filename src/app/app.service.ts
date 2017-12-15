@@ -19,6 +19,7 @@ export class AppService {
     return this.http.get(url)
     .map((res: Response) => res.json());
     }
+
   getEventosPartido(partido: Partido) {
   	let id = partido.id;
   	let url = this.apiUrl + "matchs/${id}";

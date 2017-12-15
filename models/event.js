@@ -6,6 +6,6 @@ var eventSchema= new mongoose.Schema({
   time: {type: Date,required: true},
   player: {type: String},
   observation: {type: String}
-},{timestamps:true});
+},{timestamps:true, usePushEach: true});
 
 mongoose.model('event', eventSchema);

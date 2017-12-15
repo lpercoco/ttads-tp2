@@ -5,13 +5,10 @@ mongoose.Promise = global.Promise;
 var router=require('express').Router();
 var Team = mongoose.model('team');
 var Match = mongoose.model('match');
+//var Event = mongoose.model('event');
+//var EventType = mongoose.model('eventType');
 var ObjectId = mongoose.Types.ObjectId;
 
-//Match.remove().exec();
-
-// Match.collection.dropAllIndexes(function (err, results) {
-//     // Handle errors
-// });
 
 //get all matchs
 router.get('/', (req, res, next) => {
@@ -33,7 +30,20 @@ router.get('/active', (req, res, next) => {
   Match.find({endOfMatch:null})
   .populate('localTeam')
   .populate('visitorTeam')
-  .populate('events')
+  .populate({
+    path: 'events',
+    model: 'event',
+    populate: {
+      path:'eventType',
+      model: 'eventType'}
+})
+.populate({
+    path: 'events',
+    model: 'event',
+    populate: {
+      path:'team',
+      model: 'team'}
+})
   .then(matchs =>{
     if(!matchs.length){ return res.sendStatus(204); }
     else{return res.json({'matchs': matchs});}

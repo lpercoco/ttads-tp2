@@ -5,11 +5,11 @@ export class Evento {
     public team: string;
     public time: number;
 
-    constructor(_id: string, clase_evento: string, equipo: string,  hora_evento: number, jugador: string){
+    constructor(_id: string, eventType: string, team: string,  time: number, player: string){
     	this.id = _id;
-    	this.eventType = clase_evento;
-    	this.team = equipo;
-    	this.time = hora_evento;
-    	this.player = jugador;
+    	this.eventType = eventType;
+    	this.team = team;
+    	this.time = time;
+    	this.player = player;
     }
 }

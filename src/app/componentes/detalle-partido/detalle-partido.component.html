@@ -22,18 +22,18 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Minuto</th>
+					<th>Hora</th>
 					<th>Jugador</th>
 					<th>Evento</th>
 					<th>Equipo</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let evento of partidoActivo.eventos; let i = index">
-					<td>{{evento.time}}'</td>
+				<tr *ngFor="let evento of partidoActivo.events; let i = index">
+					<td>{{evento.time | date: 'HH:mm'}}</td>
 					<td>{{evento.player}}</td>
-					<td>{{evento.eventType }}</td>
-					<td>{{evento.team }}</td>
+					<td>{{evento.eventType.name }}</td>
+					<td>{{evento.team.name }}</td>
 				</tr>
 			</tbody>
 		</table>

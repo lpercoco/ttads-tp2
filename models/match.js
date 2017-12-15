@@ -6,6 +6,6 @@ var matchSchema= new mongoose.Schema({
   events:[{type: mongoose.Schema.Types.ObjectId, ref: 'event'}],
   beginOfMatch: {type: Date},
   endOfMatch: {type: Date},
-},{timestamps:true});
+},{timestamps:true, usePushEach: true });
 
 mongoose.model('match', matchSchema);
