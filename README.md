@@ -1,8 +1,8 @@
-# ttads-tp2
+# TTADS - TP2
 Trabajo practico Nº 2 para TTADS
 
 ## Integrantes
 
-- Arnold, Joel
-- Pelegrini, Nicolas - 39760
-- Percoco, Lisandro
+* Arnold, Joel - Leg. 34.392
+* Percoco, Lisandro - Leg. 39.760
+* Pellegrini, Nicolás - Leg. 41.023
