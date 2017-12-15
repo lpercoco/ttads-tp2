@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
     }
 
     //set event values
-     var newEvent= new Event({
+    var newEvent= new Event({
       eventType:eventType,
       team:team,
       time:time,
@@ -63,22 +63,31 @@ router.delete('/:id', (req, res) => {
 
   var eventId=req.params.id;
 
-  Event.findByIdAndRemove(eventId, err=>{
+  Event.findById(eventId,(err,efind)=>{
     if(err){
-      return res.sendStatus(404);
+      return res.sendStatus(500);
     }
-    else{
-      Match.findOne({'events':{_id:eventId}})
-      .then(mfind =>{
 
-        //delete from match
-        mfind.events.pull(eventId);
-        mfind.save();
+    Match.findOne({'events':efind._id},(err,mfind)=>{
+      if(err){
+        return res.sendStatus(500);
+      }
 
-        return res.sendStatus(200).send();
-      })
-    }
+      mfind.events.pull(efind._id);
+      mfind.save( err =>{
+        if(err){
+          return res.sendStatus(500);
+        }
+      });
+      efind.remove((err)=>{
+        if(err){
+          return res.sendStatus(500);
+        }
+        return res.sendStatus(200);
+      });
+    })
   })
+
 })
 
 module.exports=router;
